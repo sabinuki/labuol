@@ -6,6 +6,10 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - type: bind
-        source: ./
-        target: /app
+      - .:/kabuol
+      - bundle:/kabuol/vendor/bundle
+    working_dir: /kabuol
+    stdin_open: true
+    tty: true
+volumes:
+  bundle:
