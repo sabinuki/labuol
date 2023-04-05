@@ -36,7 +36,7 @@ def output_csv(date_list, profit_list)
       csv << [date, profit_list[i]]
     end
 
-    csv << ['合計利益', profit_list.map(&:to_i).sum]
+    csv << ['合計利益', delimited(profit_list.map { |p| p.gsub(',', '') }.map(&:to_i).sum)]
   end
 end
 
@@ -54,6 +54,10 @@ end
 
 def read_page_num
   100
+end
+
+def delimited(num)
+  num.to_s.gsub(/(\d)(?=\d{3}+$)/, '\\1,')
 end
 
 main
